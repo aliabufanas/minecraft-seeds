@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minecraft Seeds Hub</title>
+
+<style>
+body {
+    font-family: Arial;
+    margin: 0;
+    transition: 0.3s;
+    background: #f4f4f4;
+    color: #111;
+}
+
+header {
+    background: #2c3e50;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+}
+
+#toggle {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    padding: 8px;
+}
+
+.container {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+.seed {
+    font-weight: bold;
+    color: #27ae60;
+    word-break: break-all;
+}
+
+.dark {
+    background: #111;
+    color: white;
+}
+
+.dark .card {
+    background: #1e1e1e;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <button id="toggle" onclick="toggleMode()">🌙/☀️</button>
+    <h1>🔥 Minecraft Seeds Hub</h1>
+    <p>أفضل موقع Seeds ماين كرافت مع شرح ونسخ سريع</p>
+</header>
+
+<div class="container" id="seedsContainer"></div>
+
+<script>
+// 50 Seeds + وصف (قابل للتعديل لاحقاً بسهولة)
+const seeds = [
+{seed:"8542869604561694673",desc:"قرى كثيرة وبداية سهلة جداً"},
+{seed:"-1904372258326401244",desc:"قريتين قريبين من السبون"},
+{seed:"1202321349396",desc:"قرية جميلة ومساحة بناء ممتازة"},
+{seed:"435423525",desc:"جبال ضخمة ومنظر خرافي"},
+{seed:"-908059883",desc:"كهف قريب من البداية"},
+{seed:"24564531",desc:"وادي عميق ومناظر سينمائية"},
+{seed:"88888888",desc:"عالم متنوع جداً"},
+{seed:"-1823746732",desc:"جزيرة نجاة صعبة"},
+{seed:"1092837123",desc:"جزر متعددة قريبة"},
+{seed:"-9999991",desc:"بقاء صعب على جزيرة"},
+{seed:"-24567321",desc:"كهوف ضخمة للتعدين"},
+{seed:"99887766",desc:"مدخل كهف قريب"},
+{seed:"123456789",desc:"شبكة كهوف كبيرة"},
+{seed:"-66778899",desc:"لافا وكهوف خطيرة"},
+{seed:"-361593407",desc:"قرية + معبد صحراوي"},
+{seed:"777000777",desc:"قرية كبيرة منظمة"},
+{seed:"-9090909",desc:"قرية نادرة جميلة"},
+{seed:"31415926",desc:"قرية بتصميم جميل"},
+{seed:"20202020",desc:"عالم سهل للبناء"},
+{seed:"999111222",desc:"موارد كثيرة وكهوف"},
+{seed:"-1122334455",desc:"بداية قوية وسريعة"},
+{seed:"-80808080",desc:"قرية قريبة من السبون"},
+{seed:"10101010",desc:"تعدين سريع"},
+{seed:"-123123123",desc:"قرية كبيرة جداً"},
+{seed:"456789123",desc:"كهوف عميقة"},
+{seed:"-77777777",desc:"جزيرة محيط"},
+{seed:"88888881",desc:"جزر جميلة"},
+{seed:"-33333333",desc:"محيط ضخم"},
+{seed:"22222222",desc:"جزر متعددة"},
+{seed:"-44444444",desc:"قرية على جزيرة"},
+{seed:"55555555",desc:"بقاء متوسط الصعوبة"},
+{seed:"-66666666",desc:"جزر غريبة"},
+{seed:"7777777",desc:"وديان عميقة"},
+{seed:"-11111111",desc:"جزيرة صغيرة جداً"},
+{seed:"12121212",desc:"قرية وسط سهل"},
+{seed:"-13131313",desc:"قرية كبيرة"},
+{seed:"14141414",desc:"قرى متعددة"},
+{seed:"-15151515",desc:"معبد صحراوي"},
+{seed:"16161616",desc:"قرية ونهر"},
+{seed:"-17171717",desc:"بناء سهل"},
+{seed:"18181818",desc:"قرية جميلة"},
+{seed:"-19191919",desc:"عالم زراعي"},
+{seed:"20202021",desc:"قرية منظمة"},
+{seed:"-21212121",desc:"معبد + قرية"},
+{seed:"23232323",desc:"قرية ساحرة"},
+{seed:"-24242424",desc:"بداية قوية"},
+{seed:"25252525",desc:"عالم متنوع"},
+{seed:"-26262626",desc:"قرى + جبال"},
+{seed:"27272727",desc:"مغامرة صعبة"},
+{seed:"-28282828",desc:"موارد كثيرة"},
+{seed:"29292929",desc:"تطور سريع"},
+{seed:"-30303031",desc:"كهوف + قرى"},
+];
+
+function load(){
+    const c = document.getElementById("seedsContainer");
+    seeds.forEach(s=>{
+        const div=document.createElement("div");
+        div.className="card";
+        div.innerHTML=`
+        <div class="seed">${s.seed}</div>
+        <p>${s.desc}</p>
+        <button onclick="navigator.clipboard.writeText('${s.seed}')">
+        📋 نسخ Seed
+        </button>
+        `;
+        c.appendChild(div);
+    });
+}
+
+function toggleMode(){
+    document.body.classList.toggle("dark");
+}
+
+load();
+</script>
+
+</body>
+</html>
